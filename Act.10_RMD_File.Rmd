@@ -1,0 +1,129 @@
+---
+title: "Act.10"
+author: "Ayla S. Orona"
+date: "2023-11-28"
+output: html_document
+--- 
+
+```{r setup, include=FALSE}
+# This code chunk is implemented to increase image quality and hide the code chunks to the reader. It also imports all the packages needed to create data visualizations.
+knitr::opts_chunk$set(echo = FALSE, dpi = 300) 
+```
+
+
+```{r loadPackages, include=FALSE}
+#Load packages with groundhog to improve stability
+library(groundhog)
+pkgs <- c("ggplot2", "knitr", "kableExtra","janitor","dplyr","tinytex")
+groundhog.library(pkgs, '2023-11-27') #Use the date that you started the project here
+```
+## Collatz Conjecture Explained
+
+The collatz conjecture is a mathematical problem that states repeating two arithmetic operations will eventually turn every positive number into the number one. The stopping number of a collatz conjecture refers to the amount of times a code is ran through a given number until it reaches one. For example, the number 10,000 has a stopping number of 29 as seen in the code below.
+
+```{r CollatzConjecture, echo = TRUE}
+# This code chunck is implemented to create the collatz conjecture problem and lay out its steps.
+
+get_collatz_conjecture <- function(num, stop = 0){
+  
+  if (num == 1){
+    return(stop)
+  }else if(num %% 2 == 0){
+    get_collatz_conjecture(num <- num / 2, stop = stop + 1)
+  }else{
+    num <- ((num * 3) + 1)
+    get_collatz_conjecture(num, stop = stop +1)
+  }
+}
+
+get_collatz_conjecture(10000)
+```
+
+```{r Collatz Conjecture Histogram}
+#This code is used to vectorize the collatz conjecture to create a histogram of the first 10000 numbers
+vectorized_get_collatz_conjecture <- Vectorize(FUN = get_collatz_conjecture, vectorize.args = 'num')
+get_collatz_conjecture <- vectorized_get_collatz_conjecture(seq(from = 1, to = 10000))
+hist(x = get_collatz_conjecture)
+
+```
+
+## Diamonds Vs Their Price
+
+There is a positive relationship between a diamonds carat size and its price, meaning that when a diamonds carat size increases, so does its price. The higher the carat size the heavier the diamond, therefore, a diamonds weight contributes to the increase or decrease of its individual price. As seen in the data visualization below, as the x-axis, Diamond Carat, increases, so does the y-axis, Diamond Price.
+
+```{r DiamondCaratVsPrice} 
+# This code chunk is used to create the data visualization of a Diamonds Carat VS. Diamond Price Grouped by Color.
+ggplot(diamonds) +
+  aes(x = carat, y = price, colour = color) +
+  geom_point(shape = "circle", size = 1.5) +
+  scale_color_manual(
+    values = c(
+    D = "#FF4C00",
+    E = "#FFD000",
+    F = "#C7FF00",
+    G = "#00FFCE",
+    H = "#00ACFF",
+    I = "#5200FF",
+    J = "#FF009E")
+  ) +
+  labs(
+    x = "Diamond Carat",
+    y = "Diamond Price",
+    title = "Diamond Carat Vs. Diamond Price Grouped By Color"
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(size = 14L))
+```
+
+Also as seen in the table below, the cut of a diamond does not drastically change the price. We can see that in the mean column, all diamond cuts range in between 3,000 and 4,000. The cheapest diamond cut on average would be the ideal cut and the most expensive would be the premium cut. 
+```{r DiamondsSummaryTable, warning=FALSE}
+#This code chunk is implemented to create a summary statisitc table of the price of diamonds by their cut.
+
+data("diamonds")
+
+#Changed all the stats to be related to a diamonds price grouped by its cut
+diamonds_summary <- diamonds %>%
+group_by(cut)%>%
+summarize(
+count = n(),
+minimum = min(price),
+first_quintile = quantile(price, 0.2),
+second_quintile = quantile(price, 0.4),
+median = median(price),
+third_quintile = quantile(price, 0.6),
+fourth_quintile = quantile(price, 0.8),
+maximum = max(price),
+mean = mean(price),
+standard_deviation = sd(price)
+)
+
+diamonds_summary2 <- diamonds_summary %>%
+mutate(
+across(where(is.numeric), format, big.mark = ",")
+)
+
+diamonds_summary2 %>%
+kable(
+col.names = c("Cut", "Count", "Minimum", "First Quintile", 
+              "Second Quintile", "Median", "Third Quintile",
+"Fourth Quintile", "Maximum", "Mean", "Standard Deviation"),
+caption = "Summary Statistics of Price of Diamonds by Cut", 
+#changed the title to be related to price
+booktabs = TRUE,
+align = c("l", rep("c", 6))
+)%>%
+kableExtra::kable_classic()
+
+```
+
+## What I Have Learned
+
+In this course, I have learned how to efficiently use R to organize and display data to describe their embedded relationships. I have learned how to create well organized data to make it easier to read and pin point correlations. I have also learned how to create data visualizations to articulate and manipulate relationships of data I want to visualize. Taking advantages of R packages has also allowed me to create specific and visually appealing graphics that provide meaning to previous data.
+
+\newpage
+# Code Appendix
+``` {r codeAppedix}
+#| ref.label = knitr::all_labels(),
+#| echo = TRUE,
+#| eval = FALSE
+```
