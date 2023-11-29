@@ -124,6 +124,7 @@ In this course, I have learned how to efficiently use R to organize and display 
 \newpage
 # Code Appendix
 ``` {r codeAppedix}
+#This code chunk is the code appendix which shows all the code used at the end of the RMD file.
 #| ref.label = knitr::all_labels(),
 #| echo = TRUE,
 #| eval = FALSE
