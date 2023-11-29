@@ -6,13 +6,13 @@ output: html_document
 --- 
 
 ```{r setup, include=FALSE}
-# This code chunk is implemented to increase image quality and hide the code chunks to the reader. It also imports all the packages needed to create data visualizations.
+# This code chunk is implemented to increase image quality and hide the code chunks to the reader.
 knitr::opts_chunk$set(echo = FALSE, dpi = 300) 
 ```
 
 
 ```{r loadPackages, include=FALSE}
-#Load packages with groundhog to improve stability
+#Load packages with groundhog to improve stability. I also included include=FALSE so warnings and other unnecessary labels would not show.
 library(groundhog)
 pkgs <- c("ggplot2", "knitr", "kableExtra","janitor","dplyr","tinytex")
 groundhog.library(pkgs, '2023-11-27') #Use the date that you started the project here
@@ -22,7 +22,7 @@ groundhog.library(pkgs, '2023-11-27') #Use the date that you started the project
 The collatz conjecture is a mathematical problem that states repeating two arithmetic operations will eventually turn every positive number into the number one. The stopping number of a collatz conjecture refers to the amount of times a code is ran through a given number until it reaches one. For example, the number 10,000 has a stopping number of 29 as seen in the code below.
 
 ```{r CollatzConjecture, echo = TRUE}
-# This code chunck is implemented to create the collatz conjecture problem and lay out its steps.
+# This code chunk is implemented to create the collatz conjecture problem and lay out its steps.
 
 get_collatz_conjecture <- function(num, stop = 0){
   
