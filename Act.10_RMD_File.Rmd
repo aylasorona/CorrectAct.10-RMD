@@ -122,10 +122,10 @@ kableExtra::kable_classic()
 In this course, I have learned how to efficiently use R to organize and display data to describe their embedded relationships. I have learned how to create well organized data to make it easier to read and pin point correlations. I have also learned how to create data visualizations to articulate and manipulate relationships of data I want to visualize. Taking advantages of R packages has also allowed me to create specific and visually appealing graphics that provide meaning to previous data.
 
 \newpage
-# Code Appendix
+# Code Appendix 
 ``` {r codeAppedix}
-#This code chunk is the code appendix which shows all the code used at the end of the RMD file.
 #| ref.label = knitr::all_labels(),
 #| echo = TRUE,
 #| eval = FALSE
-```
+```#Code chunk used to create code appendix at the bottom of the RMD file.
+
