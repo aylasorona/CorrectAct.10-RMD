@@ -125,9 +125,7 @@ In this course, I have learned how to efficiently use R to organize and display 
 #This code chunk is to include a screenshot of my file directory
 knitr::include_graphics('Screenshot.png')
 ```
-```{r}
-
-```
+[Github Repository Link](https://github.com/aylasorona/CorrectAct.10-RMD/tree/main)
 
 
 \newpage
