@@ -46,6 +46,7 @@ get_collatz_conjecture <- vectorized_get_collatz_conjecture(seq(from = 1, to = 1
 hist(x = get_collatz_conjecture)
 
 ```
+As we can see in this histogram, the frequency of stopping numbers follows a negative trend as the numbers increase. We can see that as the numbers grow on the x-axis, the frequency on the y-axis follows a decreasing trend. However, some numbers tend to go back and forth from increasing and decreasing on the histogram as we follow the x-axis. 
 
 ## Diamonds Vs Their Price
 
