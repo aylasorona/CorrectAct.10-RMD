@@ -121,6 +121,13 @@ kableExtra::kable_classic()
 
 In this course, I have learned how to efficiently use R to organize and display data to describe their embedded relationships. I have learned how to create well organized data to make it easier to read and pin point correlations. I have also learned how to create data visualizations to articulate and manipulate relationships of data I want to visualize. Taking advantages of R packages has also allowed me to create specific and visually appealing graphics that provide meaning to previous data.
 
+```{r ScreenshotFilePath}
+#This code chunk is to include a screenshot of my file directory
+knitr::include_graphics("2023-11-29")
+
+```
+
+
 \newpage
 # Code Appendix 
 ``` {r codeAppedix}
